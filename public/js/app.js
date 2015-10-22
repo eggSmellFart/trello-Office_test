@@ -3,19 +3,6 @@ var app = angular.module('Trello-Office', [], function ($interpolateProvider) {
 	$interpolateProvider.endSymbol('%>');
 });
 
-// app.config(function($routeProvider, $locationProvider) {
-// 	$routeProvider
-// 		.when('/', {
-// 			templateUrl: '/resources/views/Trello-Office/index',
-// 			controller: 'CardsController'
-// 		})
-
-// 		.when('/cards', {
-// 			templateUrl: '/resources/views/Trello-Office/ticket',
-// 			controllerL: 'TicketController'
-// 		})
-// }
-
 
 app.controller('CardsController', function ($scope, $http) {
 	$scope.cards = [];

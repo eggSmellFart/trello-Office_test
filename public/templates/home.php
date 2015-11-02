@@ -44,6 +44,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
+                    <li><a href="/Trello_Office/boards">Boards der letzten 3 Monate</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -68,10 +69,10 @@
 				<td>Beschreibung</td>
 				<td>URL</td>
 			</tr>
-			<tr ng-repeat="card in cards">
-				<td><div><% card.name %></div></td>
-				<td><div><% card.desc %></div></td>
-				<td><div><% card.url %></div></td>
+			<tr ng-repeat="board in boards">
+				<td><div><% board.name %></div></td>
+				<td><div><% board.desc %></div></td>
+				<td><div><% board.url %></div></td>
 			</tr>
 		</table>
 	</div>

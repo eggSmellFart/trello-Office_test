@@ -32,5 +32,5 @@ Route::resource('Trello_Office/cards', 'CardsController@index');
 Route::resource('api/Cards', 'CardsController@get');
 
 
-Route::resource('api/Members', 'MembersController');
+Route::resource('api/Members', 'MembersController@get');
 // Route::resource('Trello-Office/members', 'CardsController');

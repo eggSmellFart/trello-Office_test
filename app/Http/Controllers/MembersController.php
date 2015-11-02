@@ -25,9 +25,10 @@ class MembersController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function get()
     {
-        //
+        $members = Members::all();
+        return $members;
     }
 
     /**

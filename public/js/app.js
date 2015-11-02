@@ -53,10 +53,18 @@ app.controller('AngularBoardsController',['$scope', '$http', function ($scope, $
             console.log(response);
             console.log('success');
             $scope.boards = response.data;
-            var data = response.data;
+            var boards = response.data;
+
         }, function errorCallback (response) {
             console.log('error');
         });
+        $http.get('/api/Members').then(function(response) {
+            $scope.members = response.data;
+            var members = $scope.members;
+            angular.forEach(members, function() {
+                console.log($scope.members);
+            })
+        })
         // $http.get('api/Cards').success(function (data, status, headers, config) {
         //     $scope.cards = data;
         //     $scope.loading = false;

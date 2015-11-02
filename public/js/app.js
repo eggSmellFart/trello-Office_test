@@ -29,6 +29,7 @@ app.controller('AngularCardsController',['$scope', '$http', function ($scope, $h
         $http.get('/api/Cards').then(function successCallback(response) {
             console.log(response);
             console.log('success');
+            $scope.cards = response.data;
         }, function errorCallback (response) {
             console.log('error');
         });

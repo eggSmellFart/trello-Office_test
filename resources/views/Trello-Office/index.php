@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-<div class="container" ng-app="Trello-Office" ng-controller="CardsController">
+<div class="container" ng-app="Trello-Office" ng-controller="AngularCardsController">
 	<h1>Trello-Office</h1>
 	<div class="row">
 		<table class="table table-striped">

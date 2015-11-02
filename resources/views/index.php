@@ -10,8 +10,9 @@
 
     <link href="/css/main.css" rel="stylesheet">
     <!--AngularJS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.js"></script>
+    <script src="../js/app.js"></script>
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -56,9 +57,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
-<div class="container" ng-app="Trello-Office" ng-controller="CardsController">
-	<h1>Trello-Office</h1>
-	<div class="row">
+<div class="container" ng-app="TrelloOffice" ng-controller="AngularCardsController">
+	<h1>Trello-Office BLA</h1>
+    <div class="row">
 		<table class="table table-striped">
 			<h3>Overview</h3>
 			<tr>

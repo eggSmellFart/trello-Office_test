@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Cards;
-
+use App\Members;
 
 use Requests;
 
-class CardsController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,8 @@ class CardsController extends Controller
      */
     public function index()
     {
-        $cards = Cards::all();
-        
-        return response()->view('home', $cards);
-        // return  $cards;
+        $members = Members::where();
+        $boards = Boards::where();
     }
 
     /**
@@ -28,10 +25,9 @@ class CardsController extends Controller
      *
      * @return Response
      */
-    public function get()
+    public function create()
     {
-         $cards = Cards::all();
-         return $cards;
+        //
     }
 
     /**

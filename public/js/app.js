@@ -1,20 +1,47 @@
-var app = angular.module("Trello-Office", ['ngRoute']).config(function($routeProvider){
+var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProvider, $interpolateProvider){
 
-    $routeProvider.when('/index', {
-        templateUrl: 'public/templates/home.html',
-        controller: 'CardsController'
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+
+    app.config(function($routeProvider) {
+        $routeProvider
+
+        // route for homepage 
+        .when('Trello_Office/cards', {
+            controller: 'AngularCardsController'
+        })
+
     });
 
-    $routeProvider.otherwise({redirectTo : '/index'}); 
 });
 
-app.controller('CardsController', function ($scope, $http){  
-    var endpoint = '/cards';
 
-    $http.get(endpoint).success(function ($articles) {
-        $scope.articles = $articles;
-    });
-});
+
+app.controller('AngularCardsController',['$scope', '$http', function ($scope, $http){
+    $scope.main =  {
+        page: 1,
+        take: 15
+    }  
+    $scope.cards = [];
+    $scope.loading = false;
+    $scope.init = function () {
+        $scope.loading = true;
+        $http.get('/api/Cards').then(function successCallback(response) {
+            console.log(response);
+            console.log('success');
+        }, function errorCallback (response) {
+            console.log('error');
+        });
+        // $http.get('api/Cards').success(function (data, status, headers, config) {
+        //     $scope.cards = data;
+        //     $scope.loading = false;
+        // });
+        
+    }
+    $scope.init();
+}]);
+
+
 
 /* ================================================================================================== */
 

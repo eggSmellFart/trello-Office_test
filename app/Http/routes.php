@@ -26,6 +26,11 @@
 // 	return $cards;
 // });
 Route::resource('api/Boards', 'BoardsController');
-Route::resource('api/Cards', 'CardsController');
-Route::resource('Trello-Office/cards', 'CardsController');
-Route::resource('Trello-Office/boards', 'BoardsController' );
+// Route::resource('Trello-Office/boards', 'BoardsController' );
+
+Route::resource('Trello_Office/cards', 'CardsController@index');
+Route::resource('api/Cards', 'CardsController@get');
+
+
+Route::resource('api/Members', 'MembersController');
+// Route::resource('Trello-Office/members', 'CardsController');

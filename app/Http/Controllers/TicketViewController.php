@@ -16,7 +16,7 @@ class TicketViewController extends Controller
      */
     public function index()
     {
-        return view('Trello-Office/ticket');
+        return view('Trello-Office/boards');
     }
 
     /**

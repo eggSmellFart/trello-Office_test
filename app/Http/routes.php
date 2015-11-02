@@ -11,13 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+// Route::get('api/Ticket', function() {
+// 	$tickets = Ticket::all();
+//     return $tickets;
+// });
 // Route::get('/ticket', function () {
 // 	return view('ticket');
 // 	});
-Route::resource('api/Ticket', 'TicketController');
+// Route::get('/', function() {
+// 	$cards = Cards::all();
+// 	return $cards;
+// });
+Route::resource('api/Boards', 'BoardsController');
 Route::resource('api/Cards', 'CardsController');
-Route::resource('Trello-Office/', 'CardsViewController@index');
-Route::resource('Trello-Office/ticket','TicketViewController@index');
+Route::resource('Trello-Office/cards', 'CardsController');
+Route::resource('Trello-Office/boards', 'BoardsController' );

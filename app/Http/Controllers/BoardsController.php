@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Ticket;
+use App\Boards;
 
 use Requests;
 
-class TicketController extends Controller
+class BoardsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,14 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::all();
+        // echo $sDate;
+        $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
 
-        return $tickets;
+        $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
+
+        $boards = $boards->sortBy('created_at');
+
+        return $boards;
     }
 
     /**

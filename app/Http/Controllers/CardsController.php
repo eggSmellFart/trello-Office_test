@@ -17,6 +17,7 @@ class CardsController extends Controller
     public function index()
     {
         $cards = Cards::all();
+        
         return $cards;
     }
 

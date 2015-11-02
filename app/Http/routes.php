@@ -25,8 +25,8 @@
 // 	$cards = Cards::all();
 // 	return $cards;
 // });
-Route::resource('api/Boards', 'BoardsController');
-// Route::resource('Trello-Office/boards', 'BoardsController' );
+Route::resource('Trello_Office/boards', 'BoardsController@index' );
+Route::resource('api/Boards', 'BoardsController@get');
 
 Route::resource('Trello_Office/cards', 'CardsController@index');
 Route::resource('api/Cards', 'CardsController@get');

@@ -17,9 +17,9 @@ class CardsController extends Controller
      */
     public function index()
     {
-        $cards = Cards::all();
+        // $cards = Cards::all();
         
-        return response()->view('home', $cards);
+        return response()->view('home');
         // return  $cards;
     }
 
@@ -30,8 +30,8 @@ class CardsController extends Controller
      */
     public function get()
     {
-         $cards = Cards::all();
-         return $cards;
+        $cards = Cards::all();
+        return $cards;
     }
 
     /**

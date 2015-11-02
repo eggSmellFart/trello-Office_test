@@ -11,17 +11,17 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
             controller: 'AngularCardsController'
         })
 
+        .when('Trello_Office/boards', {
+            controller: 'AngularBoardsController'
+        })
+
     });
 
 });
 
 
 
-app.controller('AngularCardsController',['$scope', '$http', function ($scope, $http){
-    $scope.main =  {
-        page: 1,
-        take: 15
-    }  
+app.controller('AngularCardsController',['$scope', '$http', function ($scope, $http){ 
     $scope.cards = [];
     $scope.loading = false;
     $scope.init = function () {
@@ -30,6 +30,30 @@ app.controller('AngularCardsController',['$scope', '$http', function ($scope, $h
             console.log(response);
             console.log('success');
             $scope.cards = response.data;
+            var data = response.data;
+        }, function errorCallback (response) {
+            console.log('error');
+        });
+        // $http.get('api/Cards').success(function (data, status, headers, config) {
+        //     $scope.cards = data;
+        //     $scope.loading = false;
+        // });
+        
+    }
+    $scope.init();
+}]);
+
+
+app.controller('AngularBoardsController',['$scope', '$http', function ($scope, $http){ 
+    $scope.boards = [];
+    $scope.loading = false;
+    $scope.init = function () {
+        $scope.loading = true;
+        $http.get('/api/Boards').then(function successCallback(response) {
+            console.log(response);
+            console.log('success');
+            $scope.boards = response.data;
+            var data = response.data;
         }, function errorCallback (response) {
             console.log('error');
         });

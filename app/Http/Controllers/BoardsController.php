@@ -17,13 +17,9 @@ class BoardsController extends Controller
     public function index()
     {
         // echo $sDate;
-        $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
+        
 
-        $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
-
-        $boards = $boards->sortBy('created_at');
-
-        return $boards;
+        return response()->view('boards');
     }
 
     /**
@@ -31,9 +27,17 @@ class BoardsController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-        //
+    public function get()
+    {  
+       $boards = Boards::all();
+       
+       $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
+
+       $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
+
+       $boards = $boards->sortBy('created_at');
+
+        return $boards;
     }
 
     /**

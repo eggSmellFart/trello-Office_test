@@ -63,7 +63,7 @@
     				<td>Beschreibung</td>
     				<td>URL</td>
     			</tr>
-    			<tr ng-repeat="member in members">
+    			<tr ng-repeat="oneMember in oneMember">
     				<td><div><% member.id %></div></td>
     				<td><div><% member.role %></div></td>
     				<td><div><% member.username %></div></td>

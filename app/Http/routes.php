@@ -34,6 +34,8 @@ Route::get('Trello-Office/cards', 'CardsController@index');
 Route::resource('api/Members', 'MembersController@get');
 Route::get('Trello-Office/members', 'MembersController@index');
 // Route::get('Trello-Office/members/{id?}', 'MembersController@getOneMember');
-Route::resource('api/OneMember', 'MembersController@getOneMember');
-Route::get('Trello-Office/members/{id?}', 'MembersController@showOneMember');
+Route::get('api/OneMember/{id?}', 'OneMemberController@get');
+Route::get('Trello-Office/member/{id?}', 'OneMemberController@index');
 
+Route::resource('/', 'RouteException@get');
+Route::get('Trello-Office/', 'RouteException@index');

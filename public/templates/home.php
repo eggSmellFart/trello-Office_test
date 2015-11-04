@@ -69,10 +69,10 @@
 				<td>Beschreibung</td>
 				<td>URL</td>
 			</tr>
-			<tr ng-repeat="board in boards">
-				<td><div><% board.name %></div></td>
-				<td><div><% board.desc %></div></td>
-				<td><div><% board.url %></div></td>
+			<tr ng-repeat="card in cards">
+				<td><div><% card.name %></div></td>
+				<td><div><% card.desc %></div></td>
+				<td><div><% card.url %></div></td>
 			</tr>
 		</table>
 	</div>

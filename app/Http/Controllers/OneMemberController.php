@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Members;
+use App\OneMember;
 use Illuminate\Http\Request;
 
 use Requests;
 
-class MembersController extends Controller
+
+class OneMemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,9 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return response()->view('members');
+        // return response()->view('one-member',['id' => $id]);
+        return response()->view('one-member');
+        
     }
 
     /**
@@ -25,12 +28,35 @@ class MembersController extends Controller
      *
      * @return Response
      */
-    public function get()
+    public function get($id)
     {
-        $members = Members::all();
-            
+        // var_dump($id);
+        // $member = Members::where('id', '=' , $id)->get();    
+        $member = OneMember::where('id', '=', $id)->get();    
+        // return response()->view('one-member',['id' => $id]);
+        return $member;  
+    }
 
-        return $members;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**

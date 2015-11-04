@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Members;
 use Illuminate\Http\Request;
 
-use Requests;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class MembersController extends Controller
+class RouteExceptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return response()->view('members');
+        return response()->view('404');
     }
 
     /**
@@ -27,10 +26,29 @@ class MembersController extends Controller
      */
     public function get()
     {
-        $members = Members::all();
-            
 
-        return $members;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**

@@ -8,18 +8,26 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
 
         // route for homepage 
         .when('Trello-Office/cards', {
-            controller: 'AngularCardsController'
+            controller: 'AngularCardsController',
+            controllerAs: 'Cards'
         })
 
         .when('Trello-Office/boards', {
-            controller: 'AngularBoardsController'
+            controller: 'AngularBoardsController',
+            controllerAs: 'Boards'
         })
 
         .when('Trello-Office/members', {
-            controller: 'AngularMembersController'
+            controller: 'AngularMembersController', 
+            controllerAs: 'Members'
         })
-        .when('Trello-Office/members/:id', {
-            controller: 'AngularOneMemberController'
+        .when('/api/OneMember/', {
+            controller: 'AngularOneMemberController',
+            controllerAs: 'oneMember'
+        })
+        .when('Trello-Office/member/:id', {
+            controller: 'AngularOneMemberController',
+            controllerAs: 'oneMember'
         })
         
     });
@@ -34,10 +42,9 @@ app.controller('AngularCardsController',['$scope', '$http', function ($scope, $h
     $scope.init = function () {
         $scope.loading = true;
         $http.get('/api/Cards').then(function successCallback(response) {
-            console.log(response);
             console.log('success');
-            $scope.cards = response.data;
             var data = response.data;
+            $scope.cards = response.data;
         }, function errorCallback (response) {
             console.log('error');
         });
@@ -84,7 +91,7 @@ app.controller('AngularBoardsController',['$scope', '$http', '$filter', function
 }]);
 
 
-app.controller('AngularMembersController',['$scope', '$http', '$filter', function ($scope, $http, $filter){ 
+app.controller('AngularMembersController',['$scope', '$http','$route', '$routeParams', function ($scope, $http){ 
     $scope.members = [];
     $scope.loading = false;
     $scope.init = function () {
@@ -117,15 +124,15 @@ app.controller('AngularMembersController',['$scope', '$http', '$filter', functio
     $scope.init();
 }]);
 
-app.controller('AngularOneMemberController',['$route', '$routeParams', '$scope', '$http', function ($route, $routeParams, $scope, $http){ 
-    console.log($route);
-    $scope.members = [];
+app.controller('AngularOneMemberController',['$scope', '$http','$route', '$routeParams',  function ($scope, $http, $route, $routeParams ){ 
+    $scope.member = [];
     $scope.loading = false;
     $scope.init = function () {
         $scope.loading = true;
-        $http.get('/api/OneMember').then(function successCallback(response) {
+        $http.get('/api/OneMember/' + '22' ).then(function successCallback(response) {
             console.log('success');
             $scope.member = response.data;
+            console.log(response.data[0].id);
         }, function errorCallback (response) {
             console.log('error');
         });

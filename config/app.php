@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost/trello-office.mo7',
+    'url' => 'http://localhost/trello-office.mo/',
 
     /*
     |--------------------------------------------------------------------------

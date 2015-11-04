@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/Trello_Office/cards">Alle Tickets</a></li>
+                    <li><a href="/Trello-Office/cards">Alle Tickets</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -53,6 +53,27 @@
             </div>
         </div>
     </nav>
+    <div class="container" ng-app="TrelloOffice" ng-controller="AngularBoardsController">
+    	<h1>Trello-Office</h1>
+    	<div class="row">
+    		<table class="table table-striped">
+    			<h3>Overview</h3>
+    			<tr>
+    				<td>Name</td>
+    				<td>Beschreibung</td>
+    				<td>URL</td>
+    			</tr>
+    			<tr ng-repeat="board in boards">
+    				<td><div><% board.name %></div></td>
+    				<td><div><% board.desc %></div></td>
+    				<td><div><% board.url %></div></td>
+    			</tr>
+                <tr ng-repeat="member in members">
+                    <td><div><% member.name | limitTo:10:0 %></div></td>
+                </tr>
+    		</table>
+    	</div>
+    </div>
 
 
     <!-- Scripts -->
@@ -60,27 +81,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
-<div class="container" ng-app="TrelloOffice" ng-controller="AngularBoardsController">
-	<h1>Trello-Office</h1>
-	<div class="row">
-		<table class="table table-striped">
-			<h3>Overview</h3>
-			<tr>
-				<td>Name</td>
-				<td>Beschreibung</td>
-				<td>URL</td>
-			</tr>
-			<tr ng-repeat="board in boards">
-				<td><div><% board.name %></div></td>
-				<td><div><% board.desc %></div></td>
-				<td><div><% board.url %></div></td>
-			</tr>
-            <tr ng-repeat="member in members">
-                <td><div><% member.name %></div></td>
-            </tr>
-		</table>
-	</div>
-</div>
 
 
 <!-- @endsection -->

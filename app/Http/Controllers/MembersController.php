@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Members;
+use Illuminate\Http\Request;
 
 use Requests;
 
@@ -16,8 +17,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Members::where();
-        $boards = Boards::where();
+        return response()->view('members');
     }
 
     /**
@@ -28,6 +28,8 @@ class MembersController extends Controller
     public function get()
     {
         $members = Members::all();
+            
+
         return $members;
     }
 
@@ -37,9 +39,14 @@ class MembersController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function getOneMember(Request $request , $id)
     {
-        //
+        
+        if ($request->route('id')) {
+            $member = Members::where('id', '=' , $id)->get();    
+            return $member; 
+        } 
+
     }
 
     /**
@@ -48,9 +55,9 @@ class MembersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function showOneMember($id)
     {
-        //
+        return response()->view('one-member');
     }
 
     /**

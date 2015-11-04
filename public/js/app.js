@@ -7,14 +7,21 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
         $routeProvider
 
         // route for homepage 
-        .when('Trello_Office/cards', {
+        .when('Trello-Office/cards', {
             controller: 'AngularCardsController'
         })
 
-        .when('Trello_Office/boards', {
+        .when('Trello-Office/boards', {
             controller: 'AngularBoardsController'
         })
 
+        .when('Trello-Office/members', {
+            controller: 'AngularMembersController'
+        })
+        .when('Trello-Office/members/:id', {
+            controller: 'AngularOneMemberController'
+        })
+        
     });
 
 });
@@ -44,7 +51,7 @@ app.controller('AngularCardsController',['$scope', '$http', function ($scope, $h
 }]);
 
 
-app.controller('AngularBoardsController',['$scope', '$http', function ($scope, $http){ 
+app.controller('AngularBoardsController',['$scope', '$http', '$filter', function ($scope, $http, $filter){ 
     $scope.boards = [];
     $scope.loading = false;
     $scope.init = function () {
@@ -53,18 +60,20 @@ app.controller('AngularBoardsController',['$scope', '$http', function ($scope, $
             console.log(response);
             console.log('success');
             $scope.boards = response.data;
-            var boards = response.data;
+
 
         }, function errorCallback (response) {
             console.log('error');
         });
-        $http.get('/api/Members').then(function(response) {
-            $scope.members = response.data;
-            var members = $scope.members;
-            angular.forEach(members, function() {
-                console.log($scope.members);
-            })
-        })
+        // $http.get('/api/Members').then(function(response) {
+        //     $scope.members = response.data;
+        //     var aMembers = $scope.members;
+        //     var aFilteredMembers = $filter('limitTo')(aMembers, 10, 0);
+        //     $scope.members = aFilteredMembers;
+        //     // angular.forEach(aMembers, function() {
+        //         // console.log(this.members);
+        //     // })
+        // })
         // $http.get('api/Cards').success(function (data, status, headers, config) {
         //     $scope.cards = data;
         //     $scope.loading = false;
@@ -74,6 +83,57 @@ app.controller('AngularBoardsController',['$scope', '$http', function ($scope, $
     $scope.init();
 }]);
 
+
+app.controller('AngularMembersController',['$scope', '$http', '$filter', function ($scope, $http, $filter){ 
+    $scope.members = [];
+    $scope.loading = false;
+    $scope.init = function () {
+        $scope.loading = true;
+        $http.get('/api/Members').then(function successCallback(response) {
+            console.log('success');
+            $scope.members = response.data;
+            // var members = response.data;
+            // console.log(members);
+
+        }, function errorCallback (response) {
+            console.log('error');
+        });
+
+        // $http.get('/api/Boards').then(function(response) {
+        //     $scope.members = response.data;
+        //     var aMembers = $scope.members;
+        //     var aFilteredMembers = $filter('limitTo')(aMembers, 10, 0);
+        //     $scope.members = aFilteredMembers;
+        //     // angular.forEach(aMembers, function() {
+        //         // console.log(this.members);
+        //     // })
+        // })
+        // $http.get('api/Cards').success(function (data, status, headers, config) {
+        //     $scope.cards = data;
+        //     $scope.loading = false;
+        // });
+        
+    }
+    $scope.init();
+}]);
+
+app.controller('AngularOneMemberController',['$route', '$routeParams', '$scope', '$http', function ($route, $routeParams, $scope, $http){ 
+    console.log($route);
+    $scope.members = [];
+    $scope.loading = false;
+    $scope.init = function () {
+        $scope.loading = true;
+        $http.get('/api/OneMember').then(function successCallback(response) {
+            console.log('success');
+            $scope.member = response.data;
+        }, function errorCallback (response) {
+            console.log('error');
+        });
+        
+        
+    }
+    $scope.init();
+}]);
 
 
 /* ================================================================================================== */

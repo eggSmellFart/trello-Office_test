@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.js"></script>
 
-    <script src="../js/app.js"></script>
+    <script src="../../js/app.js"></script>
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -53,30 +53,30 @@
         </div>
     </nav>
 
+    <div class="container" ng-app="TrelloOffice" ng-controller="AngularOneMemberController">
+    	<h1>Trello-Office</h1>
+    	<div class="row">
+    		<table class="table table-striped">
+    			<h3>Members</h3>
+    			<tr>
+    				<td>Name</td>
+    				<td>Beschreibung</td>
+    				<td>URL</td>
+    			</tr>
+    			<tr ng-repeat="member in members">
+    				<td><div><% member.id %></div></td>
+    				<td><div><% member.role %></div></td>
+    				<td><div><% member.username %></div></td>
+    			</tr>
+    		</table>
+    	</div>
+    </div>
 
     <!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
-<div class="container" ng-app="TrelloOffice" ng-controller="AngularCardsController">
-	<h1>Trello-Office</h1>
-	<div class="row">
-		<table class="table table-striped">
-			<h3>Overview</h3>
-			<tr>
-				<td>Name</td>
-				<td>Beschreibung</td>
-				<td>URL</td>
-			</tr>
-			<tr ng-repeat="board in boards">
-				<td><div><% board.name %></div></td>
-				<td><div><% board.desc %></div></td>
-				<td><div><% board.url %></div></td>
-			</tr>
-		</table>
-	</div>
-</div>
 
 
 <!-- @endsection

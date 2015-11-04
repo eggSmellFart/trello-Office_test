@@ -25,12 +25,15 @@
 // 	$cards = Cards::all();
 // 	return $cards;
 // });
-Route::resource('Trello_Office/boards', 'BoardsController@index' );
 Route::resource('api/Boards', 'BoardsController@get');
+Route::get('Trello-Office/boards', 'BoardsController@index');
 
-Route::resource('Trello_Office/cards', 'CardsController@index');
 Route::resource('api/Cards', 'CardsController@get');
-
+Route::get('Trello-Office/cards', 'CardsController@index');
 
 Route::resource('api/Members', 'MembersController@get');
-// Route::resource('Trello-Office/members', 'CardsController');
+Route::get('Trello-Office/members', 'MembersController@index');
+// Route::get('Trello-Office/members/{id?}', 'MembersController@getOneMember');
+Route::resource('api/OneMember', 'MembersController@getOneMember');
+Route::get('Trello-Office/members/{id?}', 'MembersController@showOneMember');
+

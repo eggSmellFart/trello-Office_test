@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\OneMember;
 use Illuminate\Http\Request;
 
-use Response;
-use Requests;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-
-class OneMemberController extends Controller
+class SynthController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index($id = '')
+    public function index()
     {
-        // var_dump($id);
-        // return response()->view('one-member',['id' => $id]);
-        return response()->view('one-member');
-        
+        return response()->view('synth');
     }
 
     /**
@@ -30,14 +24,9 @@ class OneMemberController extends Controller
      *
      * @return Response
      */
-    public function get($id = '')
+    public function create()
     {
-        // var_dump($id);
-        // $member = Members::where('id', '=' , $id)->get();    
-        $member = OneMember::where('id', '=', $id)->get();
-        var_dump($member);
-        // return response()->view('one-member',['id' => $id]);
-        return response()->json($member);  
+        //
     }
 
     /**

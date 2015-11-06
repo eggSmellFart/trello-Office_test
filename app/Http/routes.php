@@ -39,3 +39,5 @@ Route::get('Trello-Office/member/{id?}', 'OneMemberController@index');
 
 Route::resource('/', 'RouteException@get');
 Route::get('Trello-Office/', 'RouteException@index');
+
+Route::get('Trello-Office/synth', 'SynthController@index');

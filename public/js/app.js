@@ -1,9 +1,9 @@
-var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProvider, $interpolateProvider){
+var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProvider, $interpolateProvider, $locationProvider ){
 
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
 
-    app.config(function($routeProvider) {
+    app.config(function($routeProvider, $locationProvider) {
         $routeProvider
 
         // route for homepage 
@@ -21,10 +21,10 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
             controller: 'AngularMembersController', 
             controllerAs: 'Members'
         })
-        .when('/api/OneMember/', {
-            controller: 'AngularOneMemberController',
-            controllerAs: 'oneMember'
-        })
+        // .when('/api/OneMember/:id', {
+        //     controller: 'AngularOneMemberController',
+        //     controllerAs: 'oneMember'
+        // })
         .when('Trello-Office/member/:id', {
             controller: 'AngularOneMemberController',
             controllerAs: 'oneMember'
@@ -91,7 +91,7 @@ app.controller('AngularBoardsController',['$scope', '$http', '$filter', function
 }]);
 
 
-app.controller('AngularMembersController',['$scope', '$http','$route', '$routeParams', function ($scope, $http){ 
+app.controller('AngularMembersController',[ '$scope', '$http','$route', '$routeParams', function ($scope, $http){ 
     $scope.members = [];
     $scope.loading = false;
     $scope.init = function () {
@@ -124,12 +124,13 @@ app.controller('AngularMembersController',['$scope', '$http','$route', '$routePa
     $scope.init();
 }]);
 
-app.controller('AngularOneMemberController',['$scope', '$http','$route', '$routeParams',  function ($scope, $http, $route, $routeParams ){ 
+app.controller('AngularOneMemberController',['$scope', '$http','$route', '$location', function ($scope, $http, $route, $location ){ 
+    console.log($location);
     $scope.member = [];
     $scope.loading = false;
     $scope.init = function () {
         $scope.loading = true;
-        $http.get('/api/OneMember/' + '22' ).then(function successCallback(response) {
+        $http.get('/api/OneMember/' + id ).then(function successCallback(response) {
             console.log('success');
             $scope.member = response.data;
             console.log(response.data[0].id);

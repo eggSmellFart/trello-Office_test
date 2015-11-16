@@ -33,7 +33,10 @@ Route::get('Trello-Office/cards', 'CardsController@index');
 
 Route::resource('api/Members', 'MembersController@get');
 Route::get('Trello-Office/members', 'MembersController@index');
-// Route::get('Trello-Office/members/{id?}', 'MembersController@getOneMember');
+
+Route::resource('api/Cards2Members', 'CardsToMembersController@get');
+Route::get('Trello-Office/membersToCards', 'CardsToMembersController@index');
+
 Route::get('api/OneMember/{id?}', 'OneMemberController@get');
 Route::get('Trello-Office/member/{id?}', 'OneMemberController@index');
 

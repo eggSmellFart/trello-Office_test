@@ -26,7 +26,7 @@ class RouteExceptionController extends Controller
      */
     public function get()
     {
-
+        
     }
 
     /**

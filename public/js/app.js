@@ -38,6 +38,10 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
             controller: 'AngularOneMemberController',
             controllerAs: 'oneMember'
         })
+        .when('Trello-Office/members/cards', {
+            controller: 'AngluarMembersToCardsController',
+            controllerAs: 'cardsToMembers'
+        })
         
     });
 
@@ -123,6 +127,10 @@ app.controller('AngularMembersController',[ '$scope', '$http','$route', '$routeP
     $scope.init();
 
 }]);
+
+// app.controller('AngluarMembersToCardsController', ['$scope','$http', function($scope, $http){
+    
+// }])
 
 
 

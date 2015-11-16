@@ -66,7 +66,7 @@
                     <td>initals</td>
     				<td>boards</td>
     			</tr>
-    			<tr ng-repeat="member in members | filter:global.search.$">
+    			<tr ng-repeat="member in members | filter:$scope.search.$">
     				<td><div><% member.id %></div></td>
                     <td><div><% member.username %></div></td>
     				<td><div><% member.role %></div></td>
@@ -75,6 +75,25 @@
     			</tr>
     		</table>
     	</div>
+        <div ng-controller="AngularCardsToMembersController as member">
+            <table class="table table-striped">
+                <h3>Members</h3>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Role</td>
+                    <td>initals</td>
+                    <td>boards</td>
+                </tr>
+                <tr ng-repeat="member in members | filter:$scope.search.$">
+                    <td><div><% member.id %></div></td>
+                    <td><div><% member.username %></div></td>
+                    <td><div><% member.role %></div></td>
+                    <td><div><% member.initial %></div></td>
+                    <td><div><% member.boards %></div></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <!-- Scripts -->

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\CardsToMembers;
 
-class TicketViewController extends Controller
+
+use Requests;
+
+class CardsToMembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class TicketViewController extends Controller
      */
     public function index()
     {
-        return view('Trello-Office/boards');
+        return response()->view('members');
     }
 
     /**
@@ -24,9 +25,11 @@ class TicketViewController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function get()
     {
-        //
+        $cardsToMembers = CardsToMembers::all();
+
+        return $cardsToMembers;
     }
 
     /**

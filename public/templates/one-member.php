@@ -12,7 +12,8 @@
     <!--AngularJS-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.js"></script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-resource.js"></script>
+    
     <script src="../../js/app.js"></script>
 
     <!-- Fonts -->

@@ -3,29 +3,48 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
 
+    app.provider('members', function () {
+        var memberID = '';
+        return {
+            setMemberID: function  (id) {
+console.log(memberID);
+                memberID  = id;
+            },
+            $get: function () {
+                memberURL = '/api/OneMember/' + memberID;
+console.log(memberURL);
+                return memberURL; 
+            }
+        }
+    })
     app.config(function($routeProvider, $locationProvider) {
+
         $routeProvider
 
-        // route for homepage 
-        .when('Trello-Office/cards', {
-            controller: 'AngularCardsController',
-            controllerAs: 'Cards'
-        })
+    //     $stateProvider.state('display',  {
+    //         url:'Trello-Office/member/:meberID',
+    //         templateUrl: templateFunction,
+    //         controller: 'AngularOneMeberController',
+    //         controllerAs: 'oneMember' 
+    //     });
 
-        .when('Trello-Office/boards', {
-            controller: 'AngularBoardsController',
-            controllerAs: 'Boards'
-        })
-
-        .when('Trello-Office/members', {
-            controller: 'AngularMembersController', 
-            controllerAs: 'Members'
-        })
-        // .when('/api/OneMember/:id', {
-        //     controller: 'AngularOneMemberController',
-        //     controllerAs: 'oneMember'
+        // // route for homepage 
+        // .when('Trello-Office/cards', {
+        //     controller: 'AngularCardsController',
+        //     controllerAs: 'Cards'
         // })
-        .when('Trello-Office/member/:id', {
+
+        // .when('Trello-Office/boards', {
+        //     controller: 'AngularBoardsController',
+        //     controllerAs: 'Boards'
+        // })
+
+        // .when('Trello-Office/members', {
+        //     controller: 'AngularMembersController', 
+        //     controllerAs: 'Members'
+        // })
+        .when('Trello-Office/member/:memberID', {
+
             controller: 'AngularOneMemberController',
             controllerAs: 'oneMember'
         })
@@ -34,6 +53,26 @@ var app = angular.module("TrelloOffice", ['ngRoute']).config(function($routeProv
 
 });
 
+
+app.controller('AngularOneMemberController',['$scope', '$http','$route', '$location', function ($scope, $http, $route, $location ){ 
+// console.log($location);
+    $scope.member = [];
+    $scope.loading = false;
+    $scope.init = function () {
+        $scope.loading = true;
+        apiURL = app.provider();
+// console.log(apiURL);
+        $http.get(/*'/api/OneMember/' + memberID*/ apiURL ).then(function successCallback(response) {
+            console.log('success');
+            $scope.member = response.data;
+        }, function errorCallback (response) {
+            console.log('error');
+        });
+        
+        
+    }
+    $scope.init();
+}]);
 
 
 app.controller('AngularCardsController',['$scope', '$http', function ($scope, $http){ 
@@ -48,10 +87,7 @@ app.controller('AngularCardsController',['$scope', '$http', function ($scope, $h
         }, function errorCallback (response) {
             console.log('error');
         });
-        // $http.get('api/Cards').success(function (data, status, headers, config) {
-        //     $scope.cards = data;
-        //     $scope.loading = false;
-        // });
+
         
     }
     $scope.init();
@@ -72,19 +108,7 @@ app.controller('AngularBoardsController',['$scope', '$http', '$filter', function
         }, function errorCallback (response) {
             console.log('error');
         });
-        // $http.get('/api/Members').then(function(response) {
-        //     $scope.members = response.data;
-        //     var aMembers = $scope.members;
-        //     var aFilteredMembers = $filter('limitTo')(aMembers, 10, 0);
-        //     $scope.members = aFilteredMembers;
-        //     // angular.forEach(aMembers, function() {
-        //         // console.log(this.members);
-        //     // })
-        // })
-        // $http.get('api/Cards').success(function (data, status, headers, config) {
-        //     $scope.cards = data;
-        //     $scope.loading = false;
-        // });
+
         
     }
     $scope.init();
@@ -99,49 +123,16 @@ app.controller('AngularMembersController',[ '$scope', '$http','$route', '$routeP
         $http.get('/api/Members').then(function successCallback(response) {
             console.log('success');
             $scope.members = response.data;
-            // var members = response.data;
-            // console.log(members);
 
         }, function errorCallback (response) {
             console.log('error');
         });
 
-        // $http.get('/api/Boards').then(function(response) {
-        //     $scope.members = response.data;
-        //     var aMembers = $scope.members;
-        //     var aFilteredMembers = $filter('limitTo')(aMembers, 10, 0);
-        //     $scope.members = aFilteredMembers;
-        //     // angular.forEach(aMembers, function() {
-        //         // console.log(this.members);
-        //     // })
-        // })
-        // $http.get('api/Cards').success(function (data, status, headers, config) {
-        //     $scope.cards = data;
-        //     $scope.loading = false;
-        // });
-        
+
     }
     $scope.init();
 }]);
 
-app.controller('AngularOneMemberController',['$scope', '$http','$route', '$location', function ($scope, $http, $route, $location ){ 
-    console.log($location);
-    $scope.member = [];
-    $scope.loading = false;
-    $scope.init = function () {
-        $scope.loading = true;
-        $http.get('/api/OneMember/' + id ).then(function successCallback(response) {
-            console.log('success');
-            $scope.member = response.data;
-            console.log(response.data[0].id);
-        }, function errorCallback (response) {
-            console.log('error');
-        });
-        
-        
-    }
-    $scope.init();
-}]);
 
 
 /* ================================================================================================== */

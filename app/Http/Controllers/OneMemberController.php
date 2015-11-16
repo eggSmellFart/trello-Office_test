@@ -32,11 +32,7 @@ class OneMemberController extends Controller
      */
     public function get($id = '')
     {
-        // var_dump($id);
-        // $member = Members::where('id', '=' , $id)->get();    
         $member = OneMember::where('id', '=', $id)->get();
-        var_dump($member);
-        // return response()->view('one-member',['id' => $id]);
         return response()->json($member);  
     }
 

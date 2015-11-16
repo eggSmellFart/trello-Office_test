@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>Trello-Office</title>
 
     <link href="/css/main.css" rel="stylesheet">
     <!--AngularJS-->
@@ -53,24 +53,25 @@
             </div>
         </div>
     </nav>
-    <div class="container" ng-app="TrelloOffice" ng-controller="AngularBoardsController">
+    <div class="container" ng-app="TrelloOffice">
     	<h1>Trello-Office</h1>
-    	<div class="row">
-    		<table class="table table-striped">
-    			<h3>Overview</h3>
+    	<div class="row" ng-controller="AngularBoardsController as board">
+    		<table class="table table-striped" >
+                <input type="text" ng-model="$scope.search.$" class="input_search" placeholder="Boards durchsuchen">
+                <h3>Overview</h3>
     			<tr>
     				<td>Name</td>
     				<td>Beschreibung</td>
     				<td>URL</td>
     			</tr>
-    			<tr ng-repeat="board in boards">
+    			<tr ng-repeat="board in boards | filter:global.search.$">
     				<td><div><% board.name %></div></td>
     				<td><div><% board.desc %></div></td>
     				<td><div><% board.url %></div></td>
     			</tr>
-                <tr ng-repeat="member in members">
+                <!-- <tr ng-repeat="member in members">
                     <td><div><% member.name | limitTo:10:0 %></div></td>
-                </tr>
+                </tr> -->
     		</table>
     	</div>
     </div>

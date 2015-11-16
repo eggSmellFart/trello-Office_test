@@ -53,23 +53,25 @@
         </div>
     </nav>
 
-    <div class="container" ng-app="TrelloOffice" ng-controller="AngularMembersController as member">
+    <div class="container" ng-app="TrelloOffice" >
     	<h1>Trello-Office</h1>
-        <div ng-view>
-            
-        </div>
-    	<div class="row">
+        <div ng-controller="AngularMembersController as member">
+            <input type="text" ng-model="$scope.search.$" placeholder="Suche" class="input_search">
     		<table class="table table-striped">
     			<h3>Members</h3>
     			<tr>
+    				<td>ID</td>
     				<td>Name</td>
-    				<td>Beschreibung</td>
-    				<td>URL</td>
+                    <td>Role</td>
+                    <td>initals</td>
+    				<td>boards</td>
     			</tr>
-    			<tr ng-repeat="member in members">
+    			<tr ng-repeat="member in members | filter:global.search.$">
     				<td><div><% member.id %></div></td>
+                    <td><div><% member.username %></div></td>
     				<td><div><% member.role %></div></td>
-    				<td><div><% member.username %></div></td>
+                    <td><div><% member.initial %></div></td>
+    				<td><div><% member.boards %></div></td>
     			</tr>
     		</table>
     	</div>

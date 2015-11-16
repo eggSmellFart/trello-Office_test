@@ -54,20 +54,20 @@
         </div>
     </nav>
 
-    <div class="container" ng-app="TrelloOffice" ng-controller="AngularOneMemberController">
+    <div class="container" ng-app="TrelloOffice" >
     	<h1>Trello-Office</h1>
     	<div class="row">
-    		<table class="table table-striped">
+    		<table class="table table-striped" ng-controller="AngularOneMemberController as member"> 
     			<h3>Members</h3>
     			<tr>
     				<td>Name</td>
     				<td>Beschreibung</td>
     				<td>URL</td>
     			</tr>
-    			<tr ng-repeat="oneMember in oneMember">
-    				<td><div><% member.id %></div></td>
-    				<td><div><% member.role %></div></td>
-    				<td><div><% member.username %></div></td>
+    			<tr ng-repeat="oneMember in member">
+    				<td><div><% oneMember.id %></div></td>
+    				<td><div><% oneMember.role %></div></td>
+    				<td><div><% oneMember.username %></div></td>
     			</tr>
     		</table>
     	</div>

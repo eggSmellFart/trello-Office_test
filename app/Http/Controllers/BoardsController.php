@@ -19,7 +19,7 @@ class BoardsController extends Controller
         // echo $sDate;
         
 
-        return response()->view('boards');
+        return response()->view('home');
     }
 
     /**

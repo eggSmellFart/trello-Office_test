@@ -21,7 +21,7 @@ class OneMemberController extends Controller
     {
         // var_dump($id);
         // return response()->view('one-member',['id' => $id]);
-        return response()->view('one-member');
+        return response()->view('home');
         
     }
 

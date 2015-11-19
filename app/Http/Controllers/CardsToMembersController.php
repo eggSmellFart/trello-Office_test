@@ -17,7 +17,7 @@ class CardsToMembersController extends Controller
      */
     public function index()
     {
-        return response()->view('members');
+        return response()->view('home');
     }
 
     /**

@@ -29,15 +29,15 @@ class BoardsController extends Controller
      */
     public function get()
     {  
-       $boards = Boards::all();
+        $boards = Boards::all();
        
-       $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
+        $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
 
-       $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
+        $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
 
-       $boards = $boards->sortBy('created_at');
+        header("Access-Control-Allow-Origin: *");
 
-        return $boards;
+        return response()->json($boards);
     }
 
     /**

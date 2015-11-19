@@ -29,8 +29,9 @@ class MembersController extends Controller
     {
         $members = Members::all();
             
+        header("Access-Control-Allow-Origin: *");
 
-        return $members;
+        return response()->json($members);
     }
 
     /**

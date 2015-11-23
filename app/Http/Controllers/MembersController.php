@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Members;
 use Illuminate\Http\Request;
+use App\Boards;
+use App\Lists;
+use App\Members;
 
 use Requests;
+use Response;
 
 class MembersController extends Controller
 {
@@ -17,7 +20,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return response()->view('members');
+        // return response()->view('home');
     }
 
     /**
@@ -29,8 +32,9 @@ class MembersController extends Controller
     {
         $members = Members::all();
             
+        header("Access-Control-Allow-Origin: *");
 
-        return $members;
+        return response()->json($members);
     }
 
     /**
@@ -39,9 +43,14 @@ class MembersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function getOne($id = null)
     {
-        //
+
+        $members = Members::where('id', '=', $id)->get();
+
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($members);  
     }
 
     /**
@@ -51,9 +60,18 @@ class MembersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function getBoards($id = null)
     {
-        //
+        $boardsTrelloID = new BoardsController;
+        $boardsTrelloID = $boardsTrelloID->getBoardTrelloID($id);
+        $memberBoards = Members::find($id)->boards;
+        $aMemberBoards = explode('|',trim($memberBoards, '|'));
+        $boardsMembers = Boards::whereIn('trello_id', $aMemberBoards )->get();
+//dd($aMemberBoards,$boardsTrelloID,$boardsMembers);
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($boardsMembers);
+
     }
 
     /**

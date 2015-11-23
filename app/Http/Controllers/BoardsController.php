@@ -4,23 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Boards;
+use App\Lists;
+use App\Members;
 
 use Requests;
 
 class BoardsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        // echo $sDate;
-        
-
-        return response()->view('boards');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,15 +19,17 @@ class BoardsController extends Controller
      */
     public function get()
     {  
-       $boards = Boards::all();
+        $boards = Boards::all();
        
-       $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
+        $sDate = date('Y-m-d H:i:s', strtotime("-4 months"));
 
-       $boards = Boards::where('last_change', '>', $sDate )->take(30)->get();
+        $boards = Boards::where('last_change', '>', $sDate )->orderBy('last_change', 'desc')->take(30)->get();
 
-       $boards = $boards->sortBy('created_at');
+        // $boards = $boards->sortBy('created_at');
 
-        return $boards;
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($boards);
     }
 
     /**
@@ -46,9 +38,13 @@ class BoardsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function getOne($id = null)
     {
-        //
+        $boards = Boards::where('id', '=', $id)->get();
+
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($boards);  
     }
 
     /**
@@ -57,9 +53,15 @@ class BoardsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show()
+    public function getBoardLists($id = null)
     {
-        return response()->view('boards');
+        $boardsTrelloID = BoardsController::getBoardTrelloID($id);
+        $boardsLists = Lists::where('boards_trello_id', '=', $boardsTrelloID)->get();
+
+        header("Access-Control-Allow-Origin: *");
+
+
+        return response()->json($boardsLists);
     }
 
     /**
@@ -68,9 +70,11 @@ class BoardsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function getBoardTrelloID($id = null)
     {
-        //
+        $boardsTrelloID = Boards::where('id', '=', $id )->pluck('trello_id');
+
+        return $boardsTrelloID;
     }
 
     /**
@@ -80,9 +84,18 @@ class BoardsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function getBoardsMembers($id = null)
     {
-        //
+        $boardsTrelloID = BoardsController::getBoardTrelloID($id);
+        $MemberBoards = Members::get()->pluck('boards');
+        $aMemberBoards = explode('|',$MemberBoards);
+      
+        $boardsMembers = Members::whereIn('boards', $aMemberBoards )->get();
+// dd($boardsMembers);
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($boardsMembers);
+
     }
 
     /**

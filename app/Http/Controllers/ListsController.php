@@ -1,14 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Cards;
+use App\Lists;
 
 
 use Requests;
+use Response;
 
-class CardsController extends Controller
+class ListsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,7 @@ class CardsController extends Controller
      */
     public function index()
     {
-        // $cards = Cards::all();
-        
-        return response()->view('home');
-        // return  $cards;
+        //
     }
 
     /**
@@ -30,12 +27,10 @@ class CardsController extends Controller
      */
     public function get()
     {
-     
-        $cards = Cards::all();
-     
+        $lists = Lists::all();
         header("Access-Control-Allow-Origin: *");
-     
-        return response()->json($cards);
+
+        return response()->json($lists); 
     }
 
     /**
@@ -46,14 +41,12 @@ class CardsController extends Controller
      */
     public function getOne($id = null)
     {
-     
-        $cards = Cards::where('id', '=', $id)->get();
-     
-        header("Access-Control-Allow-Origin: *");
-     
-        return response()->json($cards);
-    }
+        $lists = Lists::where('id', '=' , $id)->get();
 
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($lists);
+    }
 
     /**
      * Display the specified resource.
@@ -61,9 +54,10 @@ class CardsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function getBoardLists($id)
     {
-        //
+        $boardsLists = Lists::where('boards_trello_id', '=', $id)->get();
+        return $boardsLists;
     }
 
     /**

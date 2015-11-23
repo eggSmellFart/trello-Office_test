@@ -10,36 +10,35 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+/* ==================== CARDS ======================= */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-// Route::get('api/Ticket', function() {
-// 	$tickets = Ticket::all();
-//     return $tickets;
-// });
-// Route::get('/ticket', function () {
-// 	return view('ticket');
-// 	});
-// Route::get('/', function() {
-// 	$cards = Cards::all();
-// 	return $cards;
-// });
-Route::resource('api/Boards', 'BoardsController@get');
-Route::get('Trello-Office/boards', 'BoardsController@index');
+Route::get('api/cards', 'CardsController@get');
+Route::get('api/cards/{id?}', 'CardsController@getOne');
 
-Route::resource('api/Cards', 'CardsController@get');
-Route::get('Trello-Office/cards', 'CardsController@index');
+/* ==================== BOARDS ======================= */
 
-Route::resource('api/Members', 'MembersController@get');
-Route::get('Trello-Office/members', 'MembersController@index');
+Route::get('api/boards', 'BoardsController@get');
+Route::get('api/boards/{id?}', 'BoardsController@getOne');
+Route::get('api/boards/{id?}/lists', 'BoardsController@getBoardLists');
+Route::get('api/boards/{id?}/members', 'BoardsController@getBoardsMembers');
 
-Route::resource('api/Cards2Members', 'CardsToMembersController@get');
-Route::get('Trello-Office/membersToCards', 'CardsToMembersController@index');
+/* ==================== MEMBERS ======================= */
 
-Route::get('api/OneMember/{id?}', 'OneMemberController@get');
-Route::get('Trello-Office/member/{id?}', 'OneMemberController@index');
+Route::get('api/members', 'MembersController@get');
+Route::get('api/members/{id?}', 'MembersController@getOne');
+Route::get('api/members/{id?}/boards', 'MembersController@getBoards');
 
-Route::resource('/', 'RouteException@get');
-Route::get('Trello-Office/', 'RouteException@index');
+/* ==================== LISTS ======================= */
+
+Route::get('api/lists', 'ListsController@get');
+Route::get('api/lists/{id?}', 'ListsController@getOne');
+
+/* ==================== CARDS 2 MEMBERS ======================= */
+
+Route::get('api/cards2members', 'CardsToMembersController@get');
+
+
+
+
+// Route::get('/', 'RouteException@get');
 

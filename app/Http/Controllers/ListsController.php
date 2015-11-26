@@ -28,6 +28,7 @@ class ListsController extends Controller
     public function get()
     {
         $lists = Lists::all();
+        
         header("Access-Control-Allow-Origin: *");
 
         return response()->json($lists); 

@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\CardsToMembers;
 
-
-use Requests;
+use Illuminate\Http\Request;
 
 class CardsToMembersController extends Controller
 {
@@ -17,7 +16,7 @@ class CardsToMembersController extends Controller
      */
     public function index()
     {
-        return response()->view('members');
+        //
     }
 
     /**
@@ -25,11 +24,13 @@ class CardsToMembersController extends Controller
      *
      * @return Response
      */
-    public function get()
+    public function get($id = null)
     {
-        $cardsToMembers = CardsToMembers::all();
+        $cards = CardsToMembers::where('trello_id', '=', $id);
 
-        return $cardsToMembers;
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($cards);        
     }
 
     /**

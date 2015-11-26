@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Boards;
 use App\Lists;
 use App\Members;
+use App\Cards;
 
 use Requests;
 use Response;
@@ -73,7 +74,11 @@ class MembersController extends Controller
         return response()->json($boardsMembers);
 
     }
-
+    public function getCards($id = null)
+    {
+        $cardsController = new CardsController;
+        
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -61,9 +61,11 @@ class CardsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function getOneWithTrelloID($id = null)
     {
-        //
+        $cards = Cards::where('trello_id', '=', $id)->get();
+        header("Access-Control-Allow-Origin: *");
+        return response()->json($cards);
     }
 
     /**

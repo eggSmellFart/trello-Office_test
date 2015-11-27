@@ -26,8 +26,9 @@ class CardsToMembersController extends Controller
      */
     public function get($id = null)
     {
-        $cards = CardsToMembers::where('trello_id', '=', $id);
-
+        $cards = CardsToMembers::where('members_trello_id', '=', $id)->get();
+        // $cards = CardsToMembers::all();
+// dd($id);
         header("Access-Control-Allow-Origin: *");
 
         return response()->json($cards);        

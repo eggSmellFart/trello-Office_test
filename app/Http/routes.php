@@ -14,7 +14,8 @@
 
 Route::get('api/cards', 'CardsController@get');
 Route::get('api/cards/{id?}', 'CardsController@getOne');
-Route::get('api/cardsToMembers/{id?}', 'CardsController@getOneWithTrelloID');
+Route::get('api/cardsToMembers/{id?}', 'CardsToMembersController@get');
+Route::get('api/cardsTrelloID/{id?}', 'CardsController@getOneWithTrelloID');
 
 /* ==================== BOARDS ======================= */
 
@@ -38,6 +39,7 @@ Route::get('api/members/{id?}/cards', 'CardsController@get' );
 
 Route::get('api/lists', 'ListsController@get');
 Route::get('api/lists/{id?}', 'ListsController@getOne');
+Route::get('api/listsTrelloID/{id?}', 'ListsController@getOneWithTrelloID');
 
 /* ==================== CARDS 2 MEMBERS ======================= */
 

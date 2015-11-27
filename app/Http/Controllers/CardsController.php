@@ -50,7 +50,7 @@ class CardsController extends Controller
         $cards = Cards::where('id', '=', $id)->get();
      
         header("Access-Control-Allow-Origin: *");
-     
+// dd($cards);
         return response()->json($cards);
     }
 

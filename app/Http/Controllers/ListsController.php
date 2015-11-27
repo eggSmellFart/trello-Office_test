@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Lists;
+use App\List;
 
 
 use Requests;
@@ -58,6 +58,9 @@ class ListsController extends Controller
     public function getBoardLists($id)
     {
         $boardsLists = Lists::where('boards_trello_id', '=', $id)->get();
+
+        header("Access-Control-Allow-Origin: *");
+
         return $boardsLists;
     }
 
@@ -67,9 +70,13 @@ class ListsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function getOneWithTrelloID($id = null) 
     {
-        //
+        $lists = Lists::where('trello_id', '=', $id)->get();
+
+        header("Access-Control-Allow-Origin: *");
+
+        return response()->json($lists);
     }
 
     /**
